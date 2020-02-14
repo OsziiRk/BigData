@@ -77,7 +77,6 @@ numprime()
 
 
 //4. Given the variable message = "Hola Luke soy tu padre!" use slilce to extract the sequence "Luke".
-// La funcion (slice) nos permite impirmir datos de una variable, dando sus coordenadas de lo que queremos extraer
 
     var variable = "Hola Luke soy tu padre!"
     var res=variable.slice(5,9)
