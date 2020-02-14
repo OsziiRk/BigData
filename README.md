@@ -1,5 +1,5 @@
 
-<h1>Datos Masivos</h1>
+<h1>BigData</h1>
 <p align="center">
 <br><strong>Tecnológico Nacional de México</strong>
 <br><strong>Instituto Tecnológico de Tijuana</strong>
@@ -13,11 +13,11 @@
 <br><strong>Docente: Dr. Jose Christian Romero Hernandez</strong>
 </p>
 
-<h1>Unidades</h1>
+<h1>Units</h1>
 
 <ul>
-<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_1">Unidad 1</a></li>
-<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_2">Unidad 2</a></li>
-<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_3">Unidad 3</a></li>
-<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_4">Unidad 4</a></li>
+<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_1">Unit 1</a></li>
+<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_2">Unit 2</a></li>
+<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_3">Unit 3</a></li>
+<li><a href="https://github.com/OsziiRk/BigData/tree/Unidad_4">Unit 4</a></li>
 </ul>
