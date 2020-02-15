@@ -141,3 +141,39 @@ names += ("Miguel" -> 23)
 
 ```
 
+<h3>Practice 3</h3>
+<h4>Instructions</h4>
+<ol>
+<ul>Develop the 5 algorithms of the Fibonacci sequence.
+</ol>
+<h4>Code</h4>
+
+```scala
+
+// Practice 3
+
+// Develop the 5 algorithms of the Fibonacci sequence.
+
+//Algorithm 1 Downward recursive version
+def  function(n: Int): Int =  
+{  
+// If the number entered in the function is less than 2, the number entered will be returned
+if (n<2)  
+{  
+return n  
+}  
+// if it is not less than 2, the function will do a series of sums, and the result returns 
+else  
+{  
+return function(n-1) + function(n-2)  
+}  
+}  
+function(10) 
+
+
+
+
+```
+
+
+
