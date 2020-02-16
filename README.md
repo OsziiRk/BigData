@@ -170,6 +170,27 @@ return function(n-1) + function(n-2)
 }  
 function(10) 
 
+//Algorithm 2 Version with explicit formula
+
+def  function1(n: Double): Double =  
+{  
+// If the number entered in the function is less than 2, the number entered will be returned  
+if (n<2)  
+{
+return n
+}  
+//  if it is not less than 2, the following will be done 
+else  
+{  
+// the formula is divided into parts to finally create the result
+var p = ((1+(Math.sqrt(5)))/2)  
+var a = Math.pow(p,n)  
+var b = Math.pow((1-p),n)  
+var j = ((a-(b)))/(Math.sqrt(5))  
+return(j)  
+}  
+}  
+function1(10)
 
 
 
