@@ -330,7 +330,7 @@ Function5 (9)
 <h3>Homework #1</h3>
 <h4>Investigate on the subject of Pearson correlation</h4>
 
-<p>The Pearson product-moment correlation coefficient (or Pearson correlation coefficient, for short) is a measure of the strength of a linear association between two variables and is denoted by r. Basically, a Pearson product-moment correlation attempts to draw a line of best fit through the data of two variables, and the Pearson correlation coefficient, r, indicates how far away all these data points are to this line of best fit (i.e., how well the data points fit this new model/line of best fit).
+
 <p>The Pearson product-moment correlation coefficient (or Pearson correlation coefficient, for short) is a measure of the strength of a linear association between two variables and is denoted by r. Basically, a Pearson product-moment correlation attempts to draw a line of best fit through the data of two variables, and the Pearson correlation coefficient, r, indicates how far away all these data points are to this line of best fit (i.e., how well the data points fit this new model/line of best fit).</p><p>
 A Pearson correlation is a number between -1 and 1 that indicates the extent to which two variables are linearly related.
 The Pearson correlation is also known as the “product moment correlation coefficient” (PMCC) or simply “correlation”.
