@@ -322,8 +322,6 @@ return (a + b)
 }
 Function5 (9)
 
-
-
 ```
 
 <h3>Practice 4</h3>
