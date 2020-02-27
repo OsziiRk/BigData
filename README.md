@@ -400,10 +400,18 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 <br>
 <p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/correlacion1.png" style="max-width:100%;"></p>
 
-<h1>Test #1</h1>
+<h1>Tests</h1>
+<h2>Instructions:</h2>
+<h3>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</h3>
+
+
+
+
 ```scala
 
-//Examen 1
+. 
+
+//Test 1
 //Zamorano Garcia Osvaldo Arturo
 //Barraza Sierra Alexis Fernando
 
