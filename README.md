@@ -148,9 +148,7 @@ names += ("Miguel" -> 23)
 
 <h3>Practice 3</h3>
 <h4>Instructions</h4>
-<ol>
-<ul>Develop the 5 algorithms of the Fibonacci sequence.
-</ol>
+<p>Develop the 5 algorithms of the Fibonacci sequence.</p>
 <h4>Description</h4>
 <p align="justify">In this practice 6 algorithms of the Fibonacci sequence were performed.
 The Fibonacci sequence is done by always adding the last 2 numbers (All the numbers present in the sequence are called Fibonacci numbers) and existing mathematical algorithms are used.</p>
@@ -334,9 +332,7 @@ Function5 (9)
 
 <h3>Practice 4</h3>
 <h4>Instructions</h4>
-<ol>
-<ul>Add 20 basic functions for the variable "df".
-</ol>
+<p>Add 20 basic functions for the variable "df".</p>
 <h4>Description</h4>
 <p align="justify">In this practice we import a spark sql session we create a variable for the spark session and then load a dataset to later use basic functions in the dataset obtaining very interesting results</p>
 <h4>Code</h4>
@@ -413,7 +409,7 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 <h1>Tests</h1>
 <h2>Instructions:</h2>
 <p>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</p>
-
+<h4>Code</h4>
 
 ```scala
 
