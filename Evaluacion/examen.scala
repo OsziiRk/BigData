@@ -2,15 +2,22 @@
 //Zamorano Garcia Osvaldo Arturo
 //Barraza Sierra Alexis Fernando
 
-val arre = ((11,2,4),(4,5,6),(10,8,-12))
+// Matrix is declared as tuple
+val arr = ((11,2,4),(4,5,6),(10,8,-12))
 
-
-def difabs(arre:((Int, Int, Int), (Int, Int, Int), (Int, Int, Int))): Int = {
-    val diagonl_1 =(arre._1._1)+(arre._2._2)+(arre._3._3)
-    val diagonl_2 =(arre._1._3)+(arre._2._2)+(arre._3._1)
-    var diferencia = diagonl_1-diagonl_2
+//The function is created to make the difference of the diagonals
+def diagonaldifference(arr:((Int, Int, Int), (Int, Int, Int), (Int, Int, Int))): Int = {
+//The sum of the first diagonal is taken using its positions
+    val diagonal_1 =(arr._1._1)+(arr._2._2)+(arr._3._3)
+//The sum of the second diagonal is taken using its positions
+    val diagonal_2 =(arr._1._3)+(arr._2._2)+(arr._3._1)
+//The difference between the diagonals is obtained.
+    var diferencia = diagonal_1-diagonal_2
+//We obtain the absolute value of the difference between the diagonals
     var resul= math.abs(diferencia)
+//We return the result obtained
     return resul
 }
+// We send the arr to the script to get the result
+diagonaldifference(arr)
 
-difabs(arre)
