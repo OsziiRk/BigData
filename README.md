@@ -25,6 +25,9 @@
 <li>What is the difference of a value and a variable in scala?.
 <li>Given the tuple (2,4,5,1,2,3,3.1416,23) return the number 3.1416.
 </ol>
+<h4>Description</h4>
+<p align="justify">In this practice, in the first point we calculate the radius of a circle to perform these calculations, we use variables for the circumference and one to draw the radius where the mathematical formula is used, in point 2 we use two functions, one to calculate if is prime and another to ask for the number and show the result, to know if it is prime, we use a cycle for the operation and only go to the root of the number to avoid doing too many calculations,
+for point 3 we only use the interpolation with the sign $, in point 4 we use slice to extract the luke part, the function (slice) allows us to print data of a variable, giving its coordinates, in point 5 the question was answered, in point 6 we extracted the part of the tuple that requires us with the (variable position).</p>
 <h4>Code</h4>
 
 ```scala
@@ -107,6 +110,8 @@ numprime()
 <li>Print all map keys.
 <li>Add the following value to the map ("Miguel", 23).
 </ol>
+<h4>Description</h4>
+<p align="justify">In this practice we use lists arrays and mutable maps, lists are declared as a variable of type list, to the lists you can add more elements and can be ordered in different ways when you call them, to create arrangements they are declared as variables of type array and can be declared with values ​​or generated with ranges of numerical values ​​for example as in point 4 from 5 in 5 to 1000, mutable maps are lists that have a key for each value declared as mutable collections.</p>
 <h4>Code</h4>
 
 ```scala
@@ -146,6 +151,9 @@ names += ("Miguel" -> 23)
 <ol>
 <ul>Develop the 5 algorithms of the Fibonacci sequence.
 </ol>
+<h4>Description</h4>
+<p align="justify">In this practice 6 algorithms of the Fibonacci sequence were performed.
+The Fibonacci sequence is done by always adding the last 2 numbers (All the numbers present in the sequence are called Fibonacci numbers) and existing mathematical algorithms are used.</p>
 <h4>Code</h4>
 
 ```scala
@@ -329,6 +337,8 @@ Function5 (9)
 <ol>
 <ul>Add 20 basic functions for the variable "df".
 </ol>
+<h4>Description</h4>
+<p align="justify">In this practice we import a spark sql session we create a variable for the spark session and then load a dataset to later use basic functions in the dataset obtaining very interesting results</p>
 <h4>Code</h4>
 
 ```scala
@@ -340,45 +350,45 @@ import org.apache.spark.sql.SparkSession
 val spark = SparkSession.builder().getOrCreate()
 val df = spark.read.option("header", "true").option("inferSchema","true")csv("CitiGroup2006_2008")
 
-//1
+//1 print schema
 df.printSchema()
-//2
+//2 show the dataset
 df.show()
-//3
+//3 show the columns the dataset has
 df.columns
-//4
+//4 show the volume data
 df.select("Volume").show()
-//5
+//5 show the first record of the dataset
 df.first()
-//6
+//6 show the 10 records that head the data set
 df.head(10)
-//7
+//7 show interesting facts about the data
 df.describe()
-//8
+//8 count the total data the data set has
 df.count()
-//9
+//9 order the data
 df.sort()
-//10
+//10 show data that is between the conditions
 df.filter($"Close" < 490 && $"low" < 300).show()
-//11
+//11 draw the correlation
 df.select(corr("High", "Low")).show()
-//12
+//12 sum all data of high
 df.select(sum("High")).show()
-//13
+//13 mean of data
 df.select(mean("Low")).show()
-//14
+//14 max of data
 df.select(max("High")).show()
-//15
+//15 min of data
 df.select(min("Low")).show()
-//16
+//16 variance of data
 df.select(variance("Low")).show()
-//17
+//17 look for an exact data in the column
 df.filter($"High" === 487.0).show()
-//18
+//18 count the values ​​that meet the condition
 df.filter($"High" > 480).count()
-//19
+//19 sample for months
 df.select(month(df("Date"))).show()
-//20
+//20 sample for years
 df.select(year(df("Date"))).show()
 
 ```
@@ -390,11 +400,11 @@ df.select(year(df("Date"))).show()
 <h4>Investigate on the subject of Pearson correlation</h4>
 
 
-<p>The Pearson product-moment correlation coefficient (or Pearson correlation coefficient, for short) is a measure of the strength of a linear association between two variables and is denoted by r. Basically, a Pearson product-moment correlation attempts to draw a line of best fit through the data of two variables, and the Pearson correlation coefficient, r, indicates how far away all these data points are to this line of best fit (i.e., how well the data points fit this new model/line of best fit).</p><p>
+<p align="justify">The Pearson product-moment correlation coefficient (or Pearson correlation coefficient, for short) is a measure of the strength of a linear association between two variables and is denoted by r. Basically, a Pearson product-moment correlation attempts to draw a line of best fit through the data of two variables, and the Pearson correlation coefficient, r, indicates how far away all these data points are to this line of best fit (i.e., how well the data points fit this new model/line of best fit).</p><p align="justify">
 A Pearson correlation is a number between -1 and 1 that indicates the extent to which two variables are linearly related.
 The Pearson correlation is also known as the “product moment correlation coefficient” (PMCC) or simply “correlation”.
 Pearson correlations are suitable only for metric variables (which include dichotomous variables).
-Can you use any type of variable for Pearson's correlation coefficient?</p><p>
+Can you use any type of variable for Pearson's correlation coefficient?</p><p align="justify">
 No, the two variables have to be measured on either an interval or ratio scale. However, both variables do not need to be measured on the same scale (e.g., one variable can be ratio and one can be interval). Further information about types of variable can be found in our Types of Variable guide. If you have ordinal data, you will want to use Spearman's rank-order correlation or a Kendall's Tau Correlation instead of the Pearson product-moment correlation.</p>
 <p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/correlacion2.png" style="max-width:100%;"></p>
 <br>
@@ -402,31 +412,33 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 
 <h1>Tests</h1>
 <h2>Instructions:</h2>
-<h3>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</h3>
-
-
+<p>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</p>
 
 
 ```scala
-
-. 
 
 //Test 1
 //Zamorano Garcia Osvaldo Arturo
 //Barraza Sierra Alexis Fernando
 
-val arre = ((11,2,4),(4,5,6),(10,8,-12))
+// Matrix is declared as tuple
+val arr = ((11,2,4),(4,5,6),(10,8,-12))
 
-
-def difabs(arre:((Int, Int, Int), (Int, Int, Int), (Int, Int, Int))): Int = {
-    val diagonl_1 =(arre._1._1)+(arre._2._2)+(arre._3._3)
-    val diagonl_2 =(arre._1._3)+(arre._2._2)+(arre._3._1)
-    var diferencia = diagonl_1-diagonl_2
+//The function is created to make the difference of the diagonals
+def diagonaldifference(arr:((Int, Int, Int), (Int, Int, Int), (Int, Int, Int))): Int = {
+//The sum of the first diagonal is taken using its positions
+    val diagonal_1 =(arr._1._1)+(arr._2._2)+(arr._3._3)
+//The sum of the second diagonal is taken using its positions
+    val diagonal_2 =(arr._1._3)+(arr._2._2)+(arr._3._1)
+//The difference between the diagonals is obtained.
+    var diferencia = diagonal_1-diagonal_2
+//We obtain the absolute value of the difference between the diagonals
     var resul= math.abs(diferencia)
+//We return the result obtained
     return resul
 }
-
-difabs(arre)
+// We send the arr to the script to get the result
+diagonaldifference(arr)
 
 ```
 
