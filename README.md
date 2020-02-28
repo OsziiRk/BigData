@@ -452,16 +452,20 @@ df.select(approx_count_distinct("Company")).show()
 //15.mean
 df.select(mean("Sales")).show()
 
-//16
-df.first //   return the first column of the dataframe
-//17
-df.columns // Returns the dataframe columns
-//18 
-val df2 = df.withColumn("HV Ratio", df("High")+df("Volume")) // Add a column that derives from the high and Volume column
-//19
-df.select(min("Volume")).show() // Choose the volume column min
-//20
-df.select(max("Volume")).show() // Choose the volume column max
+//16 return the first column of the dataframe
+df.first 
+
+//17 Returns the dataframe columns
+df.columns 
+
+//18 Add a column that derives from the high and Volume column
+val df2 = df.withColumn("HV Ratio", df("High")+df("Volume")) 
+
+//19 Choose the volume column min
+df.select(min("Volume")).show() 
+
+//20 Choose the volume column max
+df.select(max("Volume")).show() 
 
 
 ```
@@ -482,29 +486,26 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 <br>
 <p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/correlacion1.png" style="max-width:100%;"></p>
 
-<h1>Homework</h1>
+
 <h3>Homework 2</h3>
 <h4>Investigate on the subject of variance formula </h4>
 
 
-<p align="justify">TThe variance or variance is a measure of the dispersion of a random variable (values ​​that are required randomly). The variability of said dispersion is specifically specific in the area of ​​express statistics.
-The variance of a sample or a set of values ​​is the sum of the squared deviations from the average or the average, all this divided by the total number of observations minus 1. In a very general way it can be said that the variance is the standard deviation squared.
+<p align="justify">TThe variance or variance is a measure of the dispersion of a random variable (values that are required randomly). The variability of said dispersion is specifically specific in the area of express statistics.
+The variance of a sample or a set of values is the sum of the squared deviations from the average or the average, all this divided by the total number of observations minus 1. In a very general way it can be said that the variance is the standard deviation squared.</p>
     
-The variance, together with the standard deviation, are measures of data dispersion or observations. The dispersion of these data indicates the variety that they present, that is, if all the values ​​in a set of data are equal, then there is no dispersion, but instead, if not all are equal then there is dispersion.
+<p align="justify">The variance, together with the standard deviation, are measures of data dispersion or observations. The dispersion of these data indicates the variety that they present, that is, if all the values in a set of data are equal, then there is no dispersion, but instead, if not all are equal then there is dispersion.</p>
 
-This dispersion can be large or small, depending on how close the average values ​​are. he variance of a sample is symbolized as S2, while the variance of a population symbolizes as σ2. he variance of a sample is used to estimate the variance of a population, which is often unknown. This is why S2 is also commonly considered as a statistic and σ2 as a parameter.
-
-
+<p align="justify">This dispersion can be large or small, depending on how close the average values are. he variance of a sample is symbolized as S2, while the variance of a population symbolizes as σ2. he variance of a sample is used to estimate the variance of a population, which is often unknown. This is why S2 is also commonly considered as a statistic and σ2 as a parameter.
 
 The variance of a sample has the following formula:
 
+Where, represents the sum of the subtraction between each of the sampled values () and the mean (), squared.
 
-Where, represents the sum of the subtraction between each of the sampled values ​​() and the mean (), squared.
-
-In turn, it represents the total number of observations or sampled data. For very large values ​​the variance is minimal or even negligible.
+In turn, it represents the total number of observations or sampled data. For very large values the variance is minimal or even negligible.
 
 </p>
-
+<p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/formulavariance.jpg" style="max-width:100%;"></p>
 <br>
 
 <h1>Tests</h1>
