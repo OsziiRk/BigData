@@ -14,6 +14,12 @@
 <br><strong>Docente: Dr. Jose Christian Romero Hernandez</strong>
 </p>
 
+<h1>Indice</h1>
+
+<a href = "#Practica2" target="_self"> Practice 2 </a>
+
+
+
 <h1>Practices</h1>
 <h3>Practice 1</h3>
 <h4>Instructions</h4>
@@ -97,8 +103,8 @@ numprime()
 
 ```
 
+<a name = "Practica2"> <h3>Practice 2</h3> </a>
 
-<h3>Practice 2</h3>
 <h4>Instructions</h4>
 <ol>
 <li>Create a list called "list" with the elements "rojo", "blanco", "negro".
