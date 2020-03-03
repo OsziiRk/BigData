@@ -15,13 +15,20 @@
 </p>
 
 <h1>Indice</h1>
-
-<a href = "#Practica2" target="_self"> Practice 2 </a>
-
+<ol>
+<li><a href = "#Practica1" target="_self"> Practice 1 </a>
+<li><a href = "#Practica2" target="_self"> Practice 2 </a>
+<li><a href = "#Practica3" target="_self"> Practice 3 </a>
+<li><a href = "#Practica4" target="_self"> Practice 4 </a>
+<li><a href = "#Practica5" target="_self"> Practice 5 </a>
+<li><a href = "#Tarea1" target="_self"> Homework #1 </a>
+<li><a href = "#Tarea2" target="_self"> Homework #2 </a>
+<li><a href = "#Examen1" target="_self"> Test 1 </a>
+</ol>
 
 
 <h1>Practices</h1>
-<h3>Practice 1</h3>
+<a name = "Practica1"> <h3>Practice 1</h3> </a>
 <h4>Instructions</h4>
 <ol>
 <li>Develop an algorithm in scala that calculates the radius of a circle.
@@ -152,7 +159,7 @@ names += ("Miguel" -> 23)
 
 ```
 
-<h3>Practice 3</h3>
+<a name = "Practica3"> <h3>Practice 3</h3> </a>
 <h4>Instructions</h4>
 <p>Develop the 5 algorithms of the Fibonacci sequence.</p>
 <h4>Description</h4>
@@ -336,7 +343,7 @@ Function5 (9)
 
 ```
 
-<h3>Practice 4</h3>
+<a name = "Practica4"> <h3>Practice 4</h3> </a>
 <h4>Instructions</h4>
 <p>Add 20 basic functions for the variable "df".</p>
 <h4>Description</h4>
@@ -397,7 +404,7 @@ df.select(year(df("Date"))).show()
 
 
 
-<h3>Practice 5</h3>
+<a name = "Practica5"> <h3>Practice 5</h3> </a>
 <h4>Instructions</h4>
 <p>Add 20 basic functions for the Groups.</p>
 <h4>Description</h4>
@@ -478,7 +485,7 @@ df.select(max("Volume")).show()
 
 
 <h1>Homework</h1>
-<h3>Homework #1</h3>
+<a name = "Tarea1"> <h3>Homework 1</h3> </a>
 <h4>Investigate on the subject of Pearson correlation</h4>
 
 
@@ -493,7 +500,7 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 <p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/correlacion1.png" style="max-width:100%;"></p>
 
 
-<h3>Homework 2</h3>
+<a name = "Tarea2"> <h3>Homework 2</h3> </a>
 <h4>Investigate on the subject of variance formula </h4>
 
 
@@ -515,6 +522,7 @@ In turn, it represents the total number of observations or sampled data. For ver
 <br>
 
 <h1>Tests</h1>
+<a name = "Examen1"> <h3>Test 1</h3> </a>
 <h2>Instructions:</h2>
 <p>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</p>
 <h4>Code</h4>
