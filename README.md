@@ -14,7 +14,7 @@
 <br><strong>Docente: Dr. Jose Christian Romero Hernandez</strong>
 </p>
 
-<h1>Indice</h1>
+<h1>Index</h1>
 <ol>
 <li><a href = "#Practica1" target="_self"> Practice 1 </a>
 <li><a href = "#Practica2" target="_self"> Practice 2 </a>
@@ -24,6 +24,7 @@
 <li><a href = "#Tarea1" target="_self"> Homework #1 </a>
 <li><a href = "#Tarea2" target="_self"> Homework #2 </a>
 <li><a href = "#Examen1" target="_self"> Test 1 </a>
+<li><a href = "#Examen2" target="_self"> Test 2 </a>
 </ol>
 
 
@@ -511,20 +512,22 @@ The variance of a sample or a set of values is the sum of the squared deviations
 
 <p align="justify">This dispersion can be large or small, depending on how close the average values are. he variance of a sample is symbolized as S2, while the variance of a population symbolizes as σ2. he variance of a sample is used to estimate the variance of a population, which is often unknown. This is why S2 is also commonly considered as a statistic and σ2 as a parameter.
 
-The variance of a sample has the following formula:
+The variance of a sample has the following formula:</p>
 
-Where, represents the sum of the subtraction between each of the sampled values () and the mean (), squared.
-
-In turn, it represents the total number of observations or sampled data. For very large values the variance is minimal or even negligible.
-
-</p>
 <p align="center"><img src="https://raw.githubusercontent.com/OsziiRk/Recursos_Bigdata/master/formulavariance.jpg" style="max-width:100%;"></p>
-<br>
+
+<p align="justify">Where, represents the sum of the subtraction between each of the sampled values () and the mean (), squared. 
+    
+In turn, it represents the total number of observations or sampled data. For very large values the variance is minimal or even negligible.
+</p>
+
 
 <h1>Tests</h1>
 <a name = "Examen1"> <h3>Test 1</h3> </a>
-<h2>Instructions:</h2>
+<h4>Instructions:</h4>
 <p>Develop a function called diagonal DIfference in a script with the programming language scala. It must return an integer that represents the difference of the absolute diagonal.</p>
+<h4>Description</h4>
+<p>Here is the first test performed in unit 1 in which basic instructions are used in scala</p>
 <h4>Code</h4>
 
 ```scala
@@ -554,3 +557,111 @@ diagonaldifference(arr)
 
 ```
 
+<a name = "Examen2"> <h3>Test 2</h3> </a>
+<h4>Instructions:</h4>
+<p>Perform the following actions with spark dataframe using csv netflix</p>
+<h4>Description</h4>
+<p>Here is the second test performed on unit 1 in which instructions for DataFrame are used in Spark Scala</p>
+<h4>Code</h4>
+
+```scala
+//Test 2 Unit 1
+//Zamorano Garcia Osvaldo Arturo
+//Barraza Sierra Alexis Fernando
+
+//1 Start a Spark session
+
+import org.apache.spark.sql.SparkSession
+val spark = SparkSession.builder().getOrCreate()
+
+//2 Load the Netflix Csv file, make spark infer the data types
+
+val df = spark.read.option("header", "true").option("inferSchema","true")csv("Netflix_2011_2016.csv")
+
+//3 What are the names of the columns
+
+df.columns
+
+//4 How is the scheme?
+
+df.printSchema()
+
+//5 Print the first 5 columns
+
+//Show the first 5 rows
+for(row <- df.head(5)){
+    println(row)
+}
+
+//Print the first 5 columns
+df.select($"Date",$"Open",$"High",$"Low",$"Close").show()
+
+//6 Use describe () to learn about the dataframe
+
+df.describe().show()
+
+//7 Create a new dataframe with a new column called "HV Ratio" which is the relationship between
+// High and volume of shares traded per day
+
+val df1 = df.withColumn("HV Ratio", df("High")/df("Volume"))
+df1.show()
+
+//8 What day had the highest peak the column close
+
+//The date is taken out and added to the dataframe
+val df5 = df.withColumn("Day", dayofmonth(df("Date")))
+//A dataframe is created with only the days and close
+val df5n = df5.select($"Day", $"Close")
+//The maximum close value is obtained
+val df5max= (df5n.select(max("Close")))
+//The maximum value is stored in a variable
+val closemax=df5max.first().getDouble(0)
+// The maximum close value is filtered in the dataframe showing the day and value
+df5n.filter($"Close"=== closemax).show()
+
+
+//9 What is the meaning of the column close
+//Answer the closure of netflix in the bag
+
+//10 What is the maximum and minimum of the volume column
+
+df.select(max("Volume")).show()
+df.select(min("Volume")).show()
+
+//11. With Scala / Spark $ syntax answer the following:
+
+//11a How many days was the Close column less than $ 600
+
+df.filter($"Close" < 600).count()
+
+//11b What percentage of the time was the high column greater than 500
+
+val highx=df.filter($"High" > 500).count()
+//Operation is performed to get percentage
+val per=(highx*100)/(df.count())+"%"
+
+//11c What is the correlation of pearson between the column high and volume
+
+df.select(corr("High", "Volume")).show()
+
+//11d What is the maximum of the high column per year
+
+//The year is obtained and added in a new column
+val df2 = df.withColumn("Year", year(df("Date")))
+//It is grouped to the years
+val dfmax = df2.groupBy("Year").max()
+//The maximum highs per year ordered are taken out
+dfmax.select($"Year", $"max(High)").orderBy("Year").show()
+
+
+//11e What is the average of the close column for each calendar month
+
+//The month is taken from the date and added as a new column
+val df3 = df.withColumn("Month", month(df("Date")))
+//The month is grouped with close
+val df3prom = df3.select($"Month",$"Close").groupBy("Month").mean()
+//The average is taken out and shown in order by month
+df3prom.select($"Month",$"avg(Close)").orderBy("Month").show()
+
+
+```
