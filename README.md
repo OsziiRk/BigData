@@ -505,7 +505,7 @@ No, the two variables have to be measured on either an interval or ratio scale. 
 <h4>Investigate on the subject of variance formula </h4>
 
 
-<p align="justify">TThe variance or variance is a measure of the dispersion of a random variable (values that are required randomly). The variability of said dispersion is specifically specific in the area of express statistics.
+<p align="justify">The variance or variance is a measure of the dispersion of a random variable (values that are required randomly). The variability of said dispersion is specifically specific in the area of express statistics.
 The variance of a sample or a set of values is the sum of the squared deviations from the average or the average, all this divided by the total number of observations minus 1. In a very general way it can be said that the variance is the standard deviation squared.</p>
     
 <p align="justify">The variance, together with the standard deviation, are measures of data dispersion or observations. The dispersion of these data indicates the variety that they present, that is, if all the values in a set of data are equal, then there is no dispersion, but instead, if not all are equal then there is dispersion.</p>
@@ -520,6 +520,7 @@ The variance of a sample has the following formula:</p>
     
 In turn, it represents the total number of observations or sampled data. For very large values the variance is minimal or even negligible.
 </p>
+<br>
 
 
 <h1>Tests</h1>
