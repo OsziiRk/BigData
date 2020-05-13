@@ -8,7 +8,6 @@
 <br><strong>Semestre: ENERO - JUNIO 2020</strong>
 <br><strong>Ingeniería en Tecnologías de la Información y Comunicaciones</strong>
 <br><strong>Materia: Datos Masivos</strong>
-<br><strong>Unidad: 1</strong>
 <br><strong>Zamorano Garcia Osvaldo Arturo 15211707</strong>
 <br><strong>Barraza Sierra Alexis Fernando 16212532</strong>
 <br><strong>Docente: Dr. Jose Christian Romero Hernandez</strong>
