@@ -1,0 +1,12 @@
+﻿
+The variance or variance is a measure of the dispersion of a random variable (values ​​that are required randomly). The variability of said dispersion is specifically specific in the area of ​​express statistics.
+The variance of a sample or a set of values ​​is the sum of the squared deviations from the average or the average, all this divided by the total number of observations minus 1. In a very general way it can be said that the variance is the standard deviation squared.
+
+
+The variance of a sample has the following formula:
+
+
+Where, represents the sum of the subtraction between each of the sampled values ​​() and the mean (), squared.
+
+In turn, it represents the total number of observations or sampled data. For very large values ​​the variance is minimal or even negligible.
+
