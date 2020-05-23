@@ -181,8 +181,8 @@ In abstract terms, the confusion matrix is as follows: </p>
 <h1>Practices</h1>
 
 <a name = "Practica1u2"> <h2>Practice 1 Linear Regression</h2> </a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Instructions</h3>
+<h3>Description</h3>
 <p align="justify">describe.</p>
 <h4>Code</h4>
 
@@ -193,9 +193,9 @@ In abstract terms, the confusion matrix is as follows: </p>
 ```
 
 <a name = "Practica2u2"><h2> Practice 2 Logistic Regression</h2></a>
-<h4>Instructions</h4>
+<h3>Instructions</h3>
 <p align="justify">Describe and check the instructions necessary to perform a logistic regression</p>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">In this project we will be working with a fake advertising data set, indicating whether or not a particular internet user clicked on an Advertisement. We will try to create a model that will predict whether or not they will click on an ad based off the features of that user.
 <br><br>This data set contains the following features:</p>
 
@@ -209,7 +209,8 @@ In abstract terms, the confusion matrix is as follows: </p>
 * 'Country': Country of consumer
 * 'Timestamp': Time at which consumer clicked on Ad or closed window
 * 'Clicked on Ad': 0 or 1 indicated clicking on Ad
-<h4>Code</h4>
+
+<h3>Code</h3>
 
 ```scala
 
@@ -289,7 +290,6 @@ val model = pipeline.fit(training)
 val results = model.transform(test)
 
 
-
 // Model evaluation
 
 // For Metrics and Evaluation import MulticlassMetrics
@@ -313,10 +313,9 @@ metrics.accuracy
 
 
 <a name = "Practica3u2"><h2> Practice 3 Decision tree classifier</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -326,10 +325,9 @@ metrics.accuracy
 
 
 <a name = "Practica4u2"><h2> Practice 4 Random forest classifier</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -339,10 +337,9 @@ metrics.accuracy
 
 
 <a name = "Practica5u2"><h2> Practice 5 Gradient-boosted tree classifier</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -352,10 +349,9 @@ metrics.accuracy
 
 
 <a name = "Practica6u2"><h2> Practice 6 Multilayer perceptron classifier</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -365,10 +361,9 @@ metrics.accuracy
 
 
 <a name = "Practica7u2"><h2> Practice 7 Linear Support Vector Machine</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -378,10 +373,9 @@ metrics.accuracy
 
 
 <a name = "Practica8u2"><h2> Practice 8 One-vs-Rest classifier</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -391,10 +385,9 @@ metrics.accuracy
 
 
 <a name = "Practica9u2"><h2> Practice 9 Naive Bayes</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
@@ -406,10 +399,9 @@ metrics.accuracy
 <h1>Tests</h1>
 
 <a name = "Examen1u2"><h2> Test 1</h2></a>
-<h4>Instructions</h4>
-<h4>Description</h4>
+<h3>Description</h3>
 <p align="justify">describe.</p>
-<h4>Code</h4>
+<h3>Code</h3>
 
 ```scala
 
