@@ -17,8 +17,8 @@
 <li><a href = "#Tarea1u2" target="_self"> Homework #1 </a>
 <li><a href = "#Tarea2u2" target="_self"> Homework #2 </a>
 <li><a href = "#Tarea3u2" target="_self"> Homework #3 </a>
-<li><a href = "#Practica1u2" target="_self"> Practice 1 LinearRegression</a>
-<li><a href = "#Practica2u2" target="_self"> Practice 2 LogisticRegression</a>
+<li><a href = "#Practica1u2" target="_self"> Practice 1 Linear Regression</a>
+<li><a href = "#Practica2u2" target="_self"> Practice 2 Logistic Regression</a>
 <li><a href = "#Practica3u2" target="_self"> Practice 3 Decision tree classifier</a>
 <li><a href = "#Practica4u2" target="_self"> Practice 4 Random forest classifier</a>
 <li><a href = "#Practica5u2" target="_self"> Practice 5 Gradient-boosted tree classifier</a>
@@ -180,7 +180,7 @@ In abstract terms, the confusion matrix is as follows: </p>
 
 <h1>Practices</h1>
 
-<a name = "Practica1u2"> <h2>Practice 1 LinearRegression</h2> </a>
+<a name = "Practica1u2"> <h2>Practice 1 Linear Regression</h2> </a>
 <h4>Instructions</h4>
 <h4>Description</h4>
 <p align="justify">describe.</p>
@@ -192,15 +192,122 @@ In abstract terms, the confusion matrix is as follows: </p>
 
 ```
 
-<a name = "Practica2u2"><h2> Practice 2 LogisticRegression</h2></a>
+<a name = "Practica2u2"><h2> Practice 2 Logistic Regression</h2></a>
 <h4>Instructions</h4>
+<p align="justify">Describe and check the instructions necessary to perform a logistic regression</p>
 <h4>Description</h4>
-<p align="justify">describe.</p>
+<p align="justify">In this project we will be working with a fake advertising data set, indicating whether or not a particular internet user clicked on an Advertisement. We will try to create a model that will predict whether or not they will click on an ad based off the features of that user.
+<br><br>This data set contains the following features:</p>
+
+* 'Daily Time Spent on Site': consumer time on site in minutes
+* 'Age': cutomer age in years
+* 'Area Income': Avg. Income of geographical area of consumer
+* 'Daily Internet Usage': Avg. minutes a day consumer is on the internet
+* 'Ad Topic Line': Headline of the advertisement
+* 'City': City of consumer
+* 'Male': Whether or not consumer was male
+* 'Country': Country of consumer
+* 'Timestamp': Time at which consumer clicked on Ad or closed window
+* 'Clicked on Ad': 0 or 1 indicated clicking on Ad
 <h4>Code</h4>
 
 ```scala
 
-// Practice 2
+// Take the data
+
+// Import a SparkSession with the Logistic Regression library
+import org.apache.spark.ml.classification.LogisticRegression
+import org.apache.spark.sql.SparkSession
+
+// Optional: Use the Error reporting code
+import org.apache.log4j._
+Logger.getLogger("org").setLevel(Level.ERROR)
+
+// Create a Spark session
+val spark = SparkSession.builder().getOrCreate()
+
+// Use Spark to read the csv Advertising file
+val data  = spark.read.option("header","true").option("inferSchema", "true").format("csv").load("advertising.csv")
+
+// Print the Schema of the DataFrame
+data.printSchema()
+
+
+// Display the data
+
+// Print an example line
+data.head(1)
+
+val colnames = data.columns
+val firstrow = data.head(1)(0)
+println("\n")
+println("Example data row")
+for(ind <- Range(1, colnames.length)){
+    println(colnames(ind))
+    println(firstrow(ind))
+    println("\n")
+}
+
+
+// Prepare the DataFrame for Machine Learning
+
+// Create a new column called "Hour" of the Timestamp containing "Hour of the click"
+val timedata = data.withColumn("Hour",hour(data("Timestamp")))
+
+// Rename the column "Clicked on Ad" to "label"
+// Take the following columns as features "Daily Time Spent on Site", "Age", "Area Income", "Daily Internet Usage", "Hour", "Male"
+val logregdata = timedata.select(data("Clicked on Ad").as("label"), $"Daily Time Spent on Site", $"Age", $"Area Income", $"Daily Internet Usage", $"Hour", $"Male")
+
+// Import VectorAssembler and Vectors
+import org.apache.spark.ml.feature.VectorAssembler
+import org.apache.spark.ml.linalg.Vectors
+
+// Create a new VectorAssembler object called assembler for the features
+val assembler = (new VectorAssembler()
+                  .setInputCols(Array("Daily Time Spent on Site", "Age","Area Income","Daily Internet Usage","Hour","Male"))
+                  .setOutputCol("features"))
+
+// Use randomSplit to create train and test data divided by 70/30
+val Array(training, test) = logregdata.randomSplit(Array(0.7, 0.3), seed = 12345)
+
+
+//Set up a Pipeline
+
+// Import Pipeline
+import org.apache.spark.ml.Pipeline
+
+// Create a new LogisticRegression object called lr
+val lr = new LogisticRegression()
+
+// Create a new pipeline with the elements: assembler, lr
+val pipeline = new Pipeline().setStages(Array(assembler, lr))
+
+// Adjust (fit) the pipeline for the training set
+val model = pipeline.fit(training)
+
+// Take the Results in the Test set with transform
+val results = model.transform(test)
+
+
+
+// Model evaluation
+
+// For Metrics and Evaluation import MulticlassMetrics
+import org.apache.spark.mllib.evaluation.MulticlassMetrics
+
+// Convert test results to RDD using .as and .rdd
+val predictionAndLabels = results.select($"prediction",$"label").as[(Double, Double)].rdd
+
+// Initialize a MulticlassMetrics object
+val metrics = new MulticlassMetrics(predictionAndLabels)
+
+// Print the Confusion Matrix
+println("Confusion matrix:")
+println(metrics.confusionMatrix)
+
+// Print the model Accuracy value
+metrics.accuracy
+
 
 ```
 
