@@ -326,12 +326,96 @@ metrics.accuracy
 
 <a name = "Practica4u2"><h2> Practice 4 Random forest classifier</h2></a>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+
+#### Random forest classifier was presented by team 2
+
+<p align="justify">In the Random Forest Classifier, multiple decision tree algorithms are run instead of just one. To rank a new attribute-based object, each decision tree gives a ranking, and ultimately the decision with the most "votes" is the algorithm's prediction. For regression, the average of the outputs (predictions) of all the trees is taken.</p>
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/rfc1.png" alt="Title" width="50%">
+
+<p align="justify">Random Forest is a versatile machine learning method capable of performing both regression and classification tasks. It also performs dimensional reduction methods, addresses missing values, outliers, and other essential data exploration steps. It is a type of ensemble learning method, where a group of weak models combine to form a powerful model.</p>
+
+#### How does Random Forest Classifier work?
+
+First, the data for the different trees is divided:
+* The sampling process of the data with replacement is called bootstrap.
+* One third of the data is not used for training and can be used for testing.
+* This set is called out of bag (OOB) samples.
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/traningandtest.PNG" 
+alt="Title" width="70%">
+<br>
+
+* After dividing the data, the decision trees are created using the previously divided data, the bootstraps (Training set) with their OOB (Test set) until each tree returns a result.
+* After the results of each tree are converted into one vote, by having several equal votes from different trees we will have our prediction.
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/diagram.PNG" 
+alt="Title" width="70%">
+
 <h3>Code</h3>
 
 ```scala
 
-// Practice 4
+//Random forest classifier
+// $example on$
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
+// $example off$
+import org.apache.spark.sql.SparkSession
+
+
+  def main(): Unit = {
+    val spark = SparkSession.builder.appName("RandomForestClassifierExample").getOrCreate()
+
+    // $example on$
+  
+    // Load and parse the data file, converting it to a DataFrame.
+    val data = spark.read.format("libsvm").load("./sample_libsvm_data.txt")
+
+    // Index labels, adding metadata to the label column.
+    // Fit on whole dataset to include all labels in index.
+    val labelIndexer = new StringIndexer().setInputCol("label").setOutputCol("indexedLabel").fit(data)
+    
+    // Automatically identify categorical features, and index them.
+    // Set maxCategories so features with > 4 distinct values are treated as continuous.
+    val featureIndexer = new VectorIndexer().setInputCol("features").setOutputCol("indexedFeatures").setMaxCategories(4).fit(data)
+    
+    // Split the data into training and test sets (30% held out for testing).
+    val Array(trainingData, testData) = data.randomSplit(Array(0.7, 0.3))
+
+    // Train a RandomForest model.
+    val rf = new RandomForestClassifier().setLabelCol("indexedLabel").setFeaturesCol("indexedFeatures").setNumTrees(10)
+
+    // Convert indexed labels back to original labels.
+    val labelConverter = new IndexToString().setInputCol("prediction").setOutputCol("predictedLabel").setLabels(labelIndexer.labels)
+    
+    // Chain indexers and forest in a Pipeline.
+    val pipeline = new Pipeline().setStages(Array(labelIndexer, featureIndexer, rf, labelConverter))
+
+    // Train model. This also runs the indexers.
+    val model = pipeline.fit(trainingData)
+
+    // Make predictions.
+    val predictions = model.transform(testData)
+
+    // Select example rows to display.
+    predictions.select("predictedLabel", "label", "features").show(5)
+
+    //Select (prediction, true label) and compute test error.
+    val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setPredictionCol("prediction").setMetricName("accuracy")
+    val accuracy = evaluator.evaluate(predictions)
+    println(s"Test Error = ${(1.0 - accuracy)}")
+
+    val rfModel = model.stages(2).asInstanceOf[RandomForestClassificationModel]
+    println(s"Learned classification forest model:\n ${rfModel.toDebugString}")
+    // $example off$
+
+    spark.stop()
+  }
+main()
+
 
 ```
 
