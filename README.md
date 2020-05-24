@@ -434,12 +434,94 @@ main()
 
 <a name = "Practica6u2"><h2> Practice 6 Multilayer perceptron classifier</h2></a>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+
+#### Multilayer perceptron classifier was presented by team 4
+
+<p align="justify">MLPs are forward-directed networks with one or more node layers between the input nodes and the output nodes (Hidden). Each neuron is a perceptron type. Each layer is fully connected to the next layer in the network.</p>
+
+* Perceptron: Artificial neuron or basic unit of inference in the form of a linear discriminator, from which an algorithm is developed capable of generating a criterion to select a sub-group from a larger group of components.
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/perceptron.png" alt="Title" width="50%">
+
+#### LAYERS
+
+Layers can be classified into three types:
+
+* Input layer: Made up of those neurons that introduce input patterns into the network. No processing occurs in these neurons.
+* Hidden Layers: Formed by those neurons whose inputs come from previous layers and whose outputs pass to neurons from later layers.
+* Output layer: Neurons whose output values ​​correspond to the outputs of the entire network.
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/RedNeuronal.png" alt="Title" width="50%">
+
+#### CHARACTERISTICS
+
+* An MLP consists of at least three node layers.
+* MLP uses a supervised learning technique called backpropagation for training.
+* You can distinguish data that is not linearly separable.
+* It is one of the architectures most used to solve real problems.
+* It tends to work best with deeper architectures and larger networks.
+
+
 <h3>Code</h3>
 
 ```scala
 
-// Practice 6
+package org.apache.spark.examples.ml
+
+// Step 1: Import libraries and package
+import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.sql.SparkSession
+ 
+object MultilayerPerceptronClassifierExample
+ {
+
+// Step 2: create a Spark session
+// Where the class is as follows:
+
+    def main(args: Array[String]): Unit = {
+    val spark = SparkSession.builder.appName("MultilayerPerceptronClassifierExample").getOrCreate()
+
+// Step 3: load and analyze the dataset
+// Load the stored data in LIBSVM format as a DataFrame.
+
+val data = spark.read.format("libsvm").load("/usr/local/spark-2.3.4-bin-hadoop2.6/data/mllib/sample_multiclass_classification_data.txt")
+
+// Step 4: Split the data into train and test
+// Prepare the train and the test set: training => 60%, test => 40% and seed => 12345
+
+    val splits = data.randomSplit(Array(0.6, 0.4), seed = 1234L)
+    val train = splits(0)
+    val test = splits(1)
+ 
+// Step 5: specify the layers for the neural network    
+ 
+    val layers = Array[Int](4, 5, 4, 3)
+
+// Step 6: create the MultilayerPerceptronClassifier trainer and set its parameters
+    
+    val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setSeed(1234L).setMaxIter(100)
+    
+// Step 7: Train the multilayer perceptron classification model 
+
+    val model = trainer.fit(train)
+    
+// Step 8: calculate the accuracy on the test set
+
+    val result = model.transform(test)
+    val predictionAndLabels = result.select("prediction", "label")
+    
+// Step 9: evaluate the model for prediction performance
+    val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
+    
+
+// Step 10 Print result
+    println(s"Test set accuracy = ${evaluator.evaluate(predictionAndLabels)}")
+
+    spark.stop()
+  }
+}
+
 
 ```
 
