@@ -720,12 +720,44 @@ println(s"Test Error = ${1 - accuracy}")
 
 <a name = "Practica9u2"><h2> Practice 9 Naive Bayes</h2></a>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+<p align="justify">Naive Bayes classifiers are a family of simple probabilistic, multiclass classifiers based on applying Bayes’ theorem with strong (naive) independence assumptions between every pair of features.
+
+Naive Bayes can be trained very efficiently. With a single pass over the training data, it computes the conditional probability distribution of each feature given each label. For prediction, it applies Bayes’ theorem to compute the conditional probability distribution of each label given an observation.
+
+MLlib supports both multinomial naive Bayes and Bernoulli naive Bayes.
+
+Input data: These models are typically used for document classification. Within that context, each observation is a document and each feature represents a term. A feature’s value is the frequency of the term (in multinomial Naive Bayes) or a zero or one indicating whether the term was found in the document (in Bernoulli Naive Bayes). Feature values must be non-negative. The model type is selected with an optional parameter “multinomial” or “bernoulli” with “multinomial” as the default. For document classification, the input feature vectors should usually be sparse vectors. Since the training data is only used once, it is not necessary to cache it.
+
+Additive smoothing can be used by setting the parameter λ (default to 1.01.0).</p>
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/1_39U1Ln3tSdFqsfQy6ndxOA.png" width="50%">
+
+
+
 <h3>Code</h3>
 
 ```scala
+import org.apache.spark.ml.classification.NaiveBayes
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 
-// Practice 9
+// Load the data stored in LIBSVM format as a DataFrame.
+val data = spark.read.format("libsvm").load("sample_libsvm_data.txt")
+
+// Split the data into training and test sets (30% held out for testing)
+val Array(trainingData, testData) = data.randomSplit(Array(0.7, 0.3), seed = 1234L)
+
+// Train a NaiveBayes model.
+val model = new NaiveBayes().fit(trainingData)
+
+// Select example rows to display.
+val predictions = model.transform(testData)
+predictions.show()
+
+// Select (prediction, true label) and compute test error
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("label").setPredictionCol("prediction").setMetricName("accuracy")
+val accuracy = evaluator.evaluate(predictions)
+println(s"Test set accuracy = $accuracy")
+
 
 ```
 
