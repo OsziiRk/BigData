@@ -183,12 +183,44 @@ In abstract terms, the confusion matrix is as follows: </p>
 <a name = "Practica1u2"> <h2>Practice 1 Linear Regression</h2> </a>
 <h3>Instructions</h3>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+<p align="justify">In statistics, linear regression is a linear approach to modeling the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables). The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression. This term is distinct from multivariate linear regression, where multiple correlated dependent variables are predicted, rather than a single scalar variable.</p>
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/330px-Linear_regression.svg.png">
+
+Linear regression has many practical uses. Most applications fall into one of the following two broad categories:
+
+* If the goal is prediction, forecasting, or error reduction,[clarification needed] linear regression can be used to fit a predictive model to an observed data set of values of the response and explanatory variables. After developing such a model, if additional values of the explanatory variables are collected without an accompanying response value, the fitted model can be used to make a prediction of the response.
+* If the goal is to explain variation in the response variable that can be attributed to variation in the explanatory variables, linear regression analysis can be applied to quantify the strength of the relationship between the response and the explanatory variables, and in particular to determine whether some explanatory variables may have no linear relationship with the response at all, or to identify which subsets of explanatory variables may contain redundant information about the response.
+
+
 <h3>Code</h3>
 
 ```scala
+import org.apache.spark.ml.regression.LinearRegression
 
-// Practice 1
+// Load training data
+val training = spark.read.format("libsvm")
+  .load("data/mllib/sample_linear_regression_data.txt")
+
+val lr = new LinearRegression()
+  .setMaxIter(10)
+  .setRegParam(0.3)
+  .setElasticNetParam(0.8)
+
+// Fit the model
+val lrModel = lr.fit(training)
+
+// Print the coefficients and intercept for linear regression
+println(s"Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}")
+
+// Summarize the model over the training set and print out some metrics
+val trainingSummary = lrModel.summary
+println(s"numIterations: ${trainingSummary.totalIterations}")
+println(s"objectiveHistory: [${trainingSummary.objectiveHistory.mkString(",")}]")
+trainingSummary.residuals.show()
+println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
+println(s"r2: ${trainingSummary.r2}")
+
 
 ```
 
