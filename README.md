@@ -646,13 +646,27 @@ val data = spark.read.format("libsvm").load("/usr/local/spark-2.3.4-bin-hadoop2.
 
 <a name = "Practica7u2"><h2> Practice 7 Linear Support Vector Machine</h2></a>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+<p align="justify">A support vector machine constructs a hyperplane or set of hyperplanes in a high- or infinite-dimensional space, which can be used for classification, regression, or other tasks. Intuitively, a good separation is achieved by the hyperplane that has the largest distance to the nearest training-data points of any class (so-called functional margin), since in general the larger the margin the lower the generalization error of the classifier. LinearSVC in Spark ML supports binary classification with linear SVM. Internally, it optimizes the Hinge Loss using OWLQN optimizer.</p>
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/300px-SVM_margin.png" alt="Title" width="50%">
+
+
 <h3>Code</h3>
 
 ```scala
 
-// Practice 7
+import org.apache.spark.ml.classification.LinearSVC
 
+// Load training data
+val training = spark.read.format("libsvm").load("data/mllib/sample_libsvm_data.txt")
+
+val lsvc = new LinearSVC().setMaxIter(10).setRegParam(0.1)
+
+// Fit the model
+val lsvcModel = lsvc.fit(training)
+
+// Print the coefficients and intercept for linear svc
+println(s"Coefficients: ${lsvcModel.coefficients} Intercept: ${lsvcModel.intercept}")
 ```
 
 
