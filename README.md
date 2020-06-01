@@ -314,12 +314,68 @@ metrics.accuracy
 
 <a name = "Practica3u2"><h2> Practice 3 Decision tree classifier</h2></a>
 <h3>Description</h3>
-<p align="justify">describe.</p>
+<p align="justify">A decision tree is a diagram or chart that people use to determine a course of action or show a statistical probability. A decision tree is a graphical depiction of a decision and every potential outcome or result of making that decision. Individuals deploy decision trees in a variety of situations, from something simple and personal ("Should I go out for dinner?") to more complex industrial, scientific or microeconomic undertakings.</p>
+
+<img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/decision%20tree.png" alt="Title" width="50%">
+
+
+
+####  How does the Decision Tree algorithm work?
+The basic idea behind any decision tree algorithm is as follows:
+
+Select the best attribute using Attribute Selection Measures(ASM) to split the records.
+Make that attribute a decision node and breaks the dataset into smaller subsets.
+Starts tree building by repeating this process recursively for each child until one of the condition will match:
+All the tuples belong to the same attribute value.
+There are no more remaining attributes.
+There are no more instances.
+
 <h3>Code</h3>
 
 ```scala
+import org.apache.spark.ml.Pipeline
+import org.apache.spark.ml.classification.DecisionTreeClassificationModel
+import org.apache.spark.ml.classification.DecisionTreeClassifier
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
+import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer}
 
-// Practice 3
+// Load the data stored in LIBSVM format as a DataFrame.
+val data = spark.read.format("libsvm").load("data/mllib/sample_libsvm_data.txt")
+
+// Index labels, adding metadata to the label column.
+
+val labelIndexer = new StringIndexer().setInputCol("label").setOutputCol("indexedLabel").fit(data)
+// Automatically identify categorical features, and index them.
+val featureIndexer = new VectorIndexer().setInputCol("features").setOutputCol("indexedFeatures").setMaxCategories(4).fit(data)
+
+// Split the data into training and test sets (30% held out for testing).
+val Array(trainingData, testData) = data.randomSplit(Array(0.7, 0.3))
+
+// Train a DecisionTree model.
+val dt = new DecisionTreeClassifier().setLabelCol("indexedLabel").setFeaturesCol("indexedFeatures")
+
+// Convert indexed labels back to original labels.
+val labelConverter = new IndexToString().setInputCol("prediction").setOutputCol("predictedLabel").setLabels(labelIndexer.labels)
+
+// Chain indexers and tree in a Pipeline.
+val pipeline = new Pipeline().setStages(Array(labelIndexer, featureIndexer, dt, labelConverter))
+
+// Train model. This also runs the indexers.
+val model = pipeline.fit(trainingData)
+
+// Make predictions.
+val predictions = model.transform(testData)
+
+// Select example rows to display.
+predictions.select("predictedLabel", "label", "features").show(5)
+
+// Select (prediction, true label) and compute test error.
+val evaluator = new MulticlassClassificationEvaluator().setLabelCol("indexedLabel").setPredictionCol("prediction").setMetricName("accuracy")
+val accuracy = evaluator.evaluate(predictions)
+println(s"Test Error = ${(1.0 - accuracy)}")
+
+val treeModel = model.stages(2).asInstanceOf[DecisionTreeClassificationModel]
+println(s"Learned classification tree model:\n ${treeModel.toDebugString}")
 
 ```
 
