@@ -889,7 +889,7 @@ result.show(30)
 
 // Model precision estimation runs
 val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
-println(s"Prueba de precisión = ${evaluator.evaluate(predictionAndLabels)}")
+println(s"Accuracy test = ${evaluator.evaluate(predictionAndLabels)}")
 
 
 
