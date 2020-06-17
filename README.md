@@ -498,4 +498,73 @@ println(s"Accuracy test = ${evaluator.evaluate(predictionAndLabels)}")
 
 
 ```
+<a name = "results"><h2>Results</h2>
+
+<p align="justify">Within the next section the interpreted results will be shown, with the obtained data a
+table will be made which will show which algorithm is more efficient in precision and
+execution time.</p>
+
+<h3>Results svm</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/resultado.JPG" alt="Title" width="100%"></p>
+
+<p align="justify">Within this algorithm as previously explained, it tries to separate the coefficients
+given in the information by separating them in a plane, in this case they give us the
+coordinates within the plane where each class is staying, which in total are 5
+previously adjusted and classified within our vector. We have an accuracy of 88% of
+our trained data, which is an acceptable precision for the amount of data we have.</p>
+
+<h3>Results DecisionTreeClassification</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/arbol.JPG" alt="Title"></p>
+<p align="justify">In this algorithm, it creates the structure of a decision tree, making predictions
+through the data stored in our dataset, occupying an accuracy of 89% and 11%
+error, being one of the most accurate algorithms when making a decision, the
+disadvantage it would have with others is the very complex way of interpreting the
+data.</p>
+
+<h3>Results Linear Logistic regression</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/matriz.JPG" alt="Title"></p>
+<p align="justify">Within our result it gives us a matrix which separates all the data in a matrix putting it
+in quadrants for a better interpretation, taking into account that in this algorithm it is
+separating into 4 classes with an accuracy of 89%. One of the fastest and easiest
+algorithms to interpret from the other algorithms.</p>
+
+<h3>Results Multilayer perceptron</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/mlp.JPG" alt="Title"></p>
+<p align="justify">The algorithm gives us a prediction and precision of 88% and shows us the predictions that are made when classifying against the real valuesthat we have in our data set, which are found when creating the neuron layers with a certain architecture. equal precision in all iterations used with this algorithm.</p>
+
+<h3>Comparison table of Accuracy</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/tablas1.JPG" alt="Title"></p>
+<p align="justify">Carrying out a deep analysis of our data we can see that the precision percentages
+are really similar between a range of 87-89%, so we can interpret that these three
+algorithms work with a very similar logic. Another point to highlight is how the SVM
+and Multilayer have an exact precision and does not change as in the decision tree
+or logistic this is given by the information given in our dataset and does not vary in
+the decisions of yes and no, as it differs in the case From the decision tree that
+simply taking paths through nodes can have different precisions and interpretations
+of the code.
+To conclude we can see that they are all so similar but even if it is by thousandths,
+there is one that is more precise than the others, in this case it would be logistic
+regression having a 0.8994378247842454% precision and the most imprecise in
+terms of what has a lower percentage of thousandths is multilayer with a
+0.8827505142521305% but in turn it is the one that never varies what can be an
+advantage in its favor.
+</p>
+<br>
+<h3>Comparison run time table</h3>
+<p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/tablas2.JPG" alt="Title"></p>
+<p align="justify">With the analysis of the execution time between the algorithms we can conclude that
+the algorithm that takes the longest is the multiplayer with an average of
+approximately 12 seconds although it is a short code but the process it performs on
+the neuron takes a long time to accommodate the data and extract the output result.
+On the other hand, the fastest algorithm could be said to be logistic regression with
+an average of approximately 3 seconds, given that its matrix system is much more
+efficient for controlling data than the others.
+Concluding with the interpretation of both tables, we can realize that the multilayer is
+a little more complex than the others since its algorithms are based on a neural
+network, which is more complex for the computer to understand than a simple
+matrix, which is the case of logistic regression taking out what is the best algorithm
+to interpret the necessary information.
+</p>
+
+
 
