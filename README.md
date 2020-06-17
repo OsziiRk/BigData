@@ -440,63 +440,65 @@ entire network.
 ```scala
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j._
-import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer,
-VectorAssembler}
+import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorIndexer, VectorAssembler}
 import org.apache.spark.ml.classification.MultilayerPerceptronClassifier
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.linalg.Vectors
-// Posibles errores
+
+// Possible mistakes
 Logger.getLogger("org").setLevel(Level.ERROR)
-// Sesion spark
+
+// Session spark
 val spark = SparkSession.builder().getOrCreate()
-// Cargamos dataset
-val df =
-spark.read.option("header","true").option("inferSchema","true").option("delimiter",";").
-format("csv").load("bank-full.csv")
-// para ver tipos de datos
-// df.printSchema()
-// df.show(1)
-val assembler = new
-VectorAssembler().setInputCols(Array("balance","day","duration","pdays","previous")).set
-OutputCol("features")
+
+// Load dataset
+val df = spark.read.option("header","true").option("inferSchema","true").option("delimiter",";").format("csv").load("bank-full.csv")
+
+val assembler = new VectorAssembler().setInputCols(Array("balance","day","duration","pdays","previous")).setOutputCol("features")
 val features = assembler.transform(df)
-// Modificamos la columna "y" que es la variable de salida
-// esta indica si el cliente suscribirá un depósito a plazo
-// como se clasificara en base a esta se tiene que convertir a numerica
-// stringindexer creara una nueva columna con los valores de "y" pero en numericos
-// siendo "0.0" para "no" y "1.0" para "si"
+
+// We modify the column "y" which is the output variable
+// this indicates if the client will sign a term deposit
+// how it will be classified based on this it has to be converted to numeric
+// stringindexer will create a new column with the values ​​of "and" but in numeric
+// being "0.0" for "no" and "1.0" for "yes"
+
 val labelIndexer = new StringIndexer().setInputCol("y").setOutputCol("label")
 val dataIndexed = labelIndexer.fit(features).transform(features)
-// para mostrar los datos para ver label y fectures
+
+// to display data to see label and facts
 // dataIndexed.show(100)
-// Algoritmo Multilayer perceptron
-//Dividimos los datos en un arreglo en partes de 70% y 30%
+
+// Algorithm Multilayer perceptron
+
+// We divide the data into an array into parts of 70% and 30%
 val split = dataIndexed.randomSplit(Array(0.7, 0.3), seed = 1234L)
 val train = split(0)
-16
 val test = split(1)
-// Especificamos las capas para la red neuronal
-// entrada 5 por el numero de datos de las features
-// 2 capas ocultas de dos neuronas y salida 2 ya que solo es si o no
-// dependiendo si el cliente se suscribio a un depósito a plazo
+
+// We specify the layers for the neural network
+// entry 5 for the data number of the features
+// 2 hidden layers of two neurons and output 2 since it is only yes or no
+// depending on whether the client subscribed to a term deposit
+
 val layers = Array[Int](5, 2, 3, 2)
-//Creamos el entrenador con sus parametros
-val trainer = new
-MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setSeed(1234L).setM
-axIter(100)
-//Entrenamos el modelo
+
+// We create the trainer with its parameters
+val trainer = new MultilayerPerceptronClassifier().setLayers(layers).setBlockSize(128).setSeed(1234L).setMaxIter(100)
+
+// We train the model
 val model = trainer.fit(train)
-//Imprimimos la exactitud
+
+// We print the accuracy
 val result = model.transform(test)
-//predicciones y label(originales)
+
+// predictions and label (original)
 val predictionAndLabels = result.select("prediction", "label")
-println("\nAlgoritmo Multilayer perceptron\n")
+println("\nAlgorithm  Multilayer perceptron\n")
+
 // Model precision estimation runs
 val evaluator = new MulticlassClassificationEvaluator().setMetricName("accuracy")
 println(s"Accuracy test = ${evaluator.evaluate(predictionAndLabels)}")
-
-
-
 ```
 <a name = "results"><h2>Results</h2>
 
