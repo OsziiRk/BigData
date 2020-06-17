@@ -532,7 +532,7 @@ algorithms to interpret from the other algorithms.</p>
 <p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/mlp.JPG" alt="Title"></p>
 <p align="justify">The algorithm gives us a prediction and precision of 88% and shows us the predictions that are made when classifying against the real valuesthat we have in our data set, which are found when creating the neuron layers with a certain architecture. equal precision in all iterations used with this algorithm.</p>
 
-<h3>Comparison table of Accuracy</h3>
+<a name = "accuracy"><h3>Comparison table of Accuracy</h3>
 <p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/tablas1.JPG" alt="Title"></p>
 <p align="justify">Carrying out a deep analysis of our data we can see that the precision percentages
 are really similar between a range of 87-89%, so we can interpret that these three
@@ -550,7 +550,7 @@ terms of what has a lower percentage of thousandths is multilayer with a
 advantage in its favor.
 </p>
 <br>
-<h3>Comparison run time table</h3>
+<a name = "run"><h3>Comparison run time table</h3>
 <p align="center" ><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/tablas2.JPG" alt="Title"></p>
 <p align="justify">With the analysis of the execution time between the algorithms we can conclude that
 the algorithm that takes the longest is the multiplayer with an average of
@@ -566,5 +566,27 @@ matrix, which is the case of logistic regression taking out what is the best alg
 to interpret the necessary information.
 </p>
 
+<a name = "conclusion"><h2>Conclusion</h2>
+<p align="justify">Today everyone is connected, which generates large amounts of information which
+is very valuable to interpret and analyze behaviors for different areas such as
+commerce, scientific research, marketing, among many other disciplines.
+The use of algorithms for the realization of Big Data is a fundamental tool in the
+analysis of data, since we can create large information networks to interpret and
+search among thousands of data.
+We made the comparison of 4 regularly used algorithms and we were able to see
+which is the best option when analyzing our data, this with a powerful set of tools
+such as Spark and Scala, which are the next union for the interpretation of the data.
+</p>
 
+<a name = "References"><h2>References</h2>
+  
+* ICEMD. (2019, 31 agosto). Apache Spark: Introducción, qué es y cómo funciona. Recuperado 13 de junio de 2020, de https://www.icemd.com/digital-knowledge/articulos/apache-spark-introduccion-que-es-y-como-funciona/
 
+* Implantación y Gestión de Negocios S.L. (2020, 4 junio). Historia del Big Data: un largo viaje poco conocido. Recuperado 13 de junio de 2020, de https://ignsl.es/historia-del-big-data/
+
+* NOVOSELTSEVA, E. (2019, 27 mayo). Lenguaje Scala: razones por las que sigue ganando popularidad. Recuperado 13 de junio de 2020, de https://apiumhub.com/es/tech-blog-barcelona/lenguaje-scala/
+
+* Universidad Autónoma de Madrid. (2013, octubre). Algoritmos SVM para problemas sobre big data (1). Recuperado de
+https://repositorio.uam.es/bitstream/handle/10486/14108/66152_Yvonne_Gala_Garcia.pdf?sequence=1&isAllowed=y
+
+* Zamorano, O., & Barraza, A. (2020, 28 mayo). OsziiRk/BigData. Recuperado 15 de junio de 2020, de https://github.com/OsziiRk/BigData/tree/Unidad_2
