@@ -1,4 +1,5 @@
 <h1>Unit 3</h1>
+<p align="center"><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/logos.PNG" style="max-width:100%;"></p>
 <p align="center">
 <br><strong>Tecnológico Nacional de México</strong>
 <br><strong>Instituto Tecnológico de Tijuana</strong>
@@ -11,6 +12,29 @@
 <br><strong>Barraza Sierra Alexis Fernando 16212532</strong>
 <br><strong>Docente: Dr. Jose Christian Romero Hernandez</strong>
 </p>
+<br>
+<ul>
+<li><a href = "#Kmeans" target="_self"> Kmeans </a>
+<li><a href = "#Examen1u3" target="_self"> Test </a>
+
+<br>
+<a name = "Kmeans"><h1> Kmeans </h1></a>
+
+<p align="justify">K-means is an unsupervised classification (clustering) algorithm that groups objects into k classification groups in their characteristics. Grouping is performed by minimizing the sum of distances between each object and the centroid of its group or cluster. Quadratic distance is often used.</p>
+<p align="center"><img src="https://github.com/OsziiRk/Recursos_Bigdata/blob/master/aDTF2cZ.png" style="max-width:100%;"></p>
+
+
+
+The algorithm consists of three steps:
+
+* Initialization: once the number of groups, k, has been chosen, k centroids are established in the data space, for example, choosing them randomly.
+* Assignment objects to centroids: each object in the data is assigned to its closest centroid.
+* Update centroids: the position of the centroid of each group is updated taking as a new centroid the position of the average of the objects belonging to that group.
+
+
+
+<p align="justify"> The main advantages of the k-means method are that it is a simple and fast method. But it is necessary to decide the value of k and the final result depends on the initialization of the centroids. In principle, it does not converge to the global minimum but to a local minimum.</p>
+
 <br>
 <a name = "Examen1u3"><h1> Test </h1></a>
 <h3>Instructions</h3>
